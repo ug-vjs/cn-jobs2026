@@ -236,11 +236,7 @@ body{
 .footer a{color:#04ff00;text-decoration:none;margin:0 6px}
 .footer p{color:#aaa;font-size:14px}
 
-/* ===== LIGHT MODE ===== */
-body.light-mode{background:#f5f5f5;color:#111}
-body.light-mode .content{background:#fff}
-body.light-mode h1,body.light-mode h2{color:#007700}
-body.light-mode .quote{background:#f0f0f0;color:#007700;border-left-color:#007700}
+
 
 #modeToggle{
   position:fixed;
@@ -283,7 +279,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section style="margin:40px 0; text-align:center;">
 
   <h2 style="font-family:Georgia, serif; font-size:28px; margin-bottom:10px;">
-    Keep in mind, your interview starts here
+    The Secret Success Ingredient Team
   </h2>
 
   <p style="font-family:Georgia, serif; font-size:18px; max-width:800px; margin:0 auto; line-height:1.6;">
@@ -315,8 +311,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     To Apply Sign in with a gmail Below 👈
   </h2>
 
-  <iframe height="1000" src="https://forms.gle/7uDMWWfLRJdfgCgT7" style="border: none;" width="100%">
-  </iframe></div>
+   <iframe
+    src="https://forms.gle/NgbqQDBUJZe1n5dF8"
+    width="100%"
+    height="1000"
+    style="border:none;">
+  </iframe>
+</div>
+
   </p>
 
 </div>
@@ -393,16 +395,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="https://www.marketing2advertising.com/feeds/posts/default/-/info?alt=json-in-script&callback=renderMovieSlider&max-results=1000"></script>
 </div>
 
-<button id="modeToggle">LIGHT MODE</button>
+
 
 <!-- ===================== MENU ===================== -->
 <nav class="menu-bar">
-  <a class="menu-home" href="/">Home</a>
-  <a class="menu-movies" href="https://www.marketing2advertising.com/search/label/movies1000.html">Movies</a>
-  <a class="menu-blogs" href="https://www.marketing2advertising.com/search/blogs.html">Blogs</a>
-  <a class="menu-about" href="https://www.marketing2advertising.com/p/about-us.html">About</a>
-  <a class="menu-contact" href="https://www.marketing2advertising.com/p/contact-us.html">Contact</a>
-  <a class="menu-jobs" href="https://www.marketing2advertising.com/2015/12/job-matching-across-ireland-singapore.html">Jobs</a>
+  <a class="menu-home" href="/" target="_blank" rel="noopener noreferrer">Home</a>
+  <a class="menu-movies" href="https://www.marketing2advertising.com/search/label/movies1000.html" target="_blank" rel="noopener noreferrer">Movies</a>
+  <a class="menu-blogs" href="https://www.marketing2advertising.com/search/blogs.html" target="_blank" rel="noopener noreferrer">Blogs</a>
+  <a class="menu-about" href="https://www.marketing2advertising.com/p/about-us.html" target="_blank" rel="noopener noreferrer">About</a>
+  <a class="menu-contact" href="https://www.marketing2advertising.com/p/contact-us.html" target="_blank" rel="noopener noreferrer">Contact</a>
+  <a class="menu-jobs" href="https://www.marketing2advertising.com/2015/12/job-matching-across-ireland-singapore.html" target="_blank" rel="noopener noreferrer">Jobs</a>
 </nav>
 
 <!-- ===================== FOOTER ===================== -->
@@ -436,10 +438,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 ------------------------------------- */
 const ads = [
     { client:"ca-pub-2269884583846743", slot:"2359999321", width:300, height:250 },
-    { client:"ca-pub-2269884583846743", slot:"3846048455", width:350, height:600 },
     { client:"ca-pub-2269884583846743", slot:"4256856469", width:250, height:250 },
+    { client:"ca-pub-2269884583846743", slot:"5610977415", width:336, height:280 },
     { client:"ca-pub-2269884583846743", slot:"8811425590", width:320, height:100 },
-    { client:"ca-pub-2269884583846743", slot:"5610977415", width:336, height:280 }
+    { client:"ca-pub-2269884583846743", slot:"3846048455", width:350, height:600 }
 ];
 
 let currentAdIndex = 0;
@@ -550,17 +552,6 @@ setTimeout(() => {
 }, 20000); // Wait for the first 20 seconds (7 + 13) to complete
 </script>
 
-<script>
-const modeToggle = document.getElementById('modeToggle');
-modeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('light-mode'); // Toggle light mode
-    if (document.body.classList.contains('light-mode')) {
-        modeToggle.textContent = 'DARK MODE'; // Change button text
-    } else {
-        modeToggle.textContent = 'LIGHT MODE';
-    }
-});
-</script>
 
 
 </body>
