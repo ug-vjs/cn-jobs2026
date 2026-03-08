@@ -219,104 +219,6 @@ body{
 <!--===================== VIDEO + AD SPLIT (POST STYLE) =====================-->
 <div class="post-split-wrap">
 
-  <!-- ===== ONE BLOCK VIDEO LOCK SYSTEM ===== -->
-<div id="oneUnlockSystem" style="text-align:center;margin:50px 0;">
-
-  <button id="unlockVideoBtn" style="
-    background:linear-gradient(45deg,#ff004c,#ff9800);
-    color:#fff;
-    font-size:30px;
-    font-weight:bold;
-    padding:22px 65px;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
-    box-shadow:0 12px 30px rgba(0,0,0,0.4);
-  ">
-
-  <!-- Play Icon -->
-  <div style="
-    width:0;
-    height:0;
-    border-left:40px solid white;
-    border-top:25px solid transparent;
-    border-bottom:25px solid transparent;
-    margin-left:10px;
-  "></div>
-
-</button>
-
-<style>
-@keyframes pulseGlow {
-  0% {
-    box-shadow: 0 0 0 0 rgba(255, 0, 76, 0.7),
-                0 12px 30px rgba(0,0,0,0.4);
-  }
-  70% {
-    box-shadow: 0 0 0 20px rgba(255, 0, 76, 0),
-                0 12px 30px rgba(0,0,0,0.4);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(255, 0, 76, 0),
-                0 12px 30px rgba(0,0,0,0.4);
-  }
-}
-</style>
-  
-  
-</div>
-
-<script>
-(function(){
-
-  // Wait until page fully loads
-  window.addEventListener("load", function(){
-
-    const videoSection = document.querySelector(".post-split-wrap");
-    const video = document.getElementById("videoPlayer");
-    const button = document.getElementById("unlockVideoBtn");
-    const wrapper = document.getElementById("oneUnlockSystem");
-
-    if(!videoSection || !video) return;
-
-    // Hide video automatically
-    videoSection.style.display = "none";
-
-    button.addEventListener("click", function(){
-
-      // Hide button
-      wrapper.style.display = "none";
-
-      // Show video
-      videoSection.style.display = "flex";
-
-      // Smooth scroll
-      videoSection.scrollIntoView({behavior:"smooth"});
-
-      setTimeout(function(){
-
-        video.currentTime = 0;
-
-        // Fullscreen
-        if(!document.fullscreenElement){
-          video.parentElement.requestFullscreen().catch(()=>{});
-        }
-
-        video.play();
-
-      },600);
-
-    });
-
-  });
-
-})();
-</script>
-<!-- ===== END ONE BLOCK ===== -->
-  
-<!--===================== VIDEO + AD SPLIT (POST STYLE) =====================-->
-<div class="post-split-wrap">
-
   <!--===== LEFT: VIDEO COLUMN =====-->
   <div class="post-split-content">
     <div id="video-container" style="background: rgb(0, 0, 0); border-radius: 8px; height: 500px; overflow: hidden; padding-bottom: 100px; position: relative; width: 100%;">
@@ -364,10 +266,7 @@ body{
 
       <!--INSIDE VIDEO BOTTOM AD (REPLACES OLD BOTTOM ANCHOR)-->
       <div id="insideBottomAd" style="align-items: center; background: rgb(0, 0, 0); bottom: 0px; display: flex; height: 100px; justify-content: center; left: 0px; position: absolute; width: 100%; z-index: 9999;">
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:728px;height:90px"
-             data-ad-client="ca-pub-2269884583846743"
-             data-ad-slot="3580304316"></ins>
+        <ins class="adsbygoogle" data-ad-client="ca-pub-2269884583846743" data-ad-slot="3580304316" style="display: inline-block; height: 90px; width: 728px;"></ins>
       </div>
 
     </div>
@@ -426,8 +325,8 @@ button{background:none;border:none;color:#fff;cursor:pointer}
 }
 </style>
 
-<!-- AdSense Script -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2269884583846743" crossorigin="anonymous"></script>
+<!--AdSense Script-->
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2269884583846743"></script>
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
