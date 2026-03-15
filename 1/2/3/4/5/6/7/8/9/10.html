@@ -397,9 +397,9 @@ body {
 
 
   <div class="menu-left">
-    <a href="https://www.marketing2advertising.com/">Home</a>
-    <a href="https://www.marketing2advertising.com/search">Movies AND Blogs</a>
-  </div>
+  <a href="https://www.marketing2advertising.com/" target="_blank" rel="noopener">Home</a>
+  <a href="https://www.marketing2advertising.com/search" target="_blank" rel="noopener">Movies AND Blogs</a>
+</div>
 
   <div class="search-column">
     <div class="movie-search-box">
@@ -424,10 +424,9 @@ body {
   </div>
 
   <div class="menu-right">
-    <a href="https://www.marketing2advertising.com/p/about-us.html">About</a>
-    <a href="https://www.marketing2advertising.com/p/contact-us.html">Contact</a>
-
-  </div>
+  <a href="https://www.marketing2advertising.com/p/about-us.html" target="_blank" rel="noopener">About</a>
+  <a href="https://www.marketing2advertising.com/p/contact-us.html" target="_blank" rel="noopener">Contact</a>
+</div>
 
 </div>
 
@@ -642,7 +641,7 @@ function renderMovieCard(entry, containerId){
   var card = document.createElement('div');
   card.className = 'movie-card';
   card.innerHTML = `
-    <a href="${url}" title="${title}">
+    <a href="${url}" target="_blank" rel="noopener" title="${title}">
       <div class="poster">
         <img src="${imgUrl}" alt="${title}">
         <div class="play-button">&#9658;</div>
