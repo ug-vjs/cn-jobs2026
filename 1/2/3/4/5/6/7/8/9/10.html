@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2269884583846743"
+     crossorigin="anonymous"></script> 
+</head>
+<body>
+  
+
+<b:if cond="data:blog.pageType == &quot;index&quot;">
+
+<div class="news-container">
+
+  <!-- Featured Section: Top Post from Each Category -->
+  <div class="featured-movies" id="featured-movie-grid"></div>
+
+  <!-- Category Sections -->
+  <div class="category-section" id="movies-section">
+    <h2>Movies</h2>
+    <div class="movie-list" id="movies-grid"></div>
+  </div>
+
+  <div class="category-section" id="news-section">
+    <h2>News</h2>
+    <div class="movie-list" id="news-grid"></div>
+  </div>
+
+  <div class="category-section" id="money-section">
+    <h2>Money & Finance</h2>
+    <div class="movie-list" id="money-grid"></div>
+  </div>
+
+  <div class="category-section" id="updates-section">
+    <h2>Updates</h2>
+    <div class="movie-list" id="updates-grid"></div>
+  </div>
+
+  <div class="category-section" id="games-section">
+    <h2>Games</h2>
+    <div class="movie-list" id="games-grid"></div>
+  </div>
+
+</div>
+
+<!--===================== CSS =====================-->
+<style>
+.news-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  color: #222;
+}
+
+.featured-movies {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.category-section {
+  margin-bottom: 40px;
+}
+
+.category-section h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #e50914;
+  border-bottom: 2px solid #e50914;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.movie-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: transform 0.2s;
+}
+
+.movie-card:hover {
+  transform: translateY(-3px);
+}
+
+.poster {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+}
+
+.movie-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 28px;
+  color: #fff;
+  background: rgba(229,9,20,0.85);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  box-shadow: 0 0 15px #e50914;
+  pointer-events: none;
+}
+
+.movie-title {
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+  line-height: 1.2em;
+}
+
+.movie-ad {
+  width: 100%;
+  margin: 10px 0;
+  text-align: center;
+}
+</style>
+
+<!--===================== JavaScript =====================-->
+<script>
+var allFeedEntries = [];
+var feedsLoaded = 0;
+var totalFeeds = 10;
+
+// Map categories to container IDs
+var categoryMap = {
+  "movies": "movies-grid",
+  "info": "news-grid",
+  "finance": "money-grid",
+  "moneypower": "money-grid",
+  "storytelling": "updates-grid",
+  "games": "games-grid",
+  "courses": "updates-grid"
+};
+
+// Render top post from each category in featured section
+var featuredTracker = {};
+
+function renderMovieFeedRow(json) {
+  if(json.feed && json.feed.entry){
+    allFeedEntries = allFeedEntries.concat(json.feed.entry);
+  }
+  feedsLoaded++;
+  if(feedsLoaded >= totalFeeds){
+    // Sort by published date descending (newest first)
+    allFeedEntries.sort((a,b)=>{
+      return new Date(b.published.$t) - new Date(a.published.$t);
+    });
+
+    allFeedEntries.forEach(entry=>{
+      var cat = entry.category ? entry.category[0].term.toLowerCase() : "updates";
+      var containerId = categoryMap[cat] || "updates-grid";
+
+      // Featured: Only first post per category
+      if(!featuredTracker[cat]){
+        renderMovieCard(entry, "featured-movie-grid");
+        featuredTracker[cat] = true;
+      }
+
+      renderMovieCard(entry, containerId);
+    });
+  }
+}
+
+function renderMovieCard(entry, containerId){
+  var title = entry.title.$t;
+  var url = entry.link.find(l=>l.rel==='alternate')?.href || '#';
+  var imgUrl = entry.media$thumbnail?.url.replace('/s72-c/', '/s640/') || 
+               entry.content?.$t.match(/<img[^>]+src="([^">]+)"/)?.[1] || 
+               'https://via.placeholder.com/300x450?text=No+Image';
+
+  var card = document.createElement('div');
+  card.className = 'movie-card';
+  card.innerHTML = `
+    <a href="${url}" title="${title}">
+      <div class="poster">
+        <img src="${imgUrl}" alt="${title}">
+        <div class="play-button">&#9658;</div>
+      </div>
+      <div class="movie-title">${title}</div>
+    </a>
+  `;
+
+  var container = document.getElementById(containerId);
+  container.appendChild(card);
+
+  // Ad every 9 posts
+  if(container.children.length % 9 === 0){
+    var adDiv = document.createElement('div');
+    adDiv.className = 'movie-ad';
+    adDiv.innerHTML = `
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2269884583846743"
+           data-ad-slot="2359999321"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    `;
+    container.appendChild(adDiv);
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  }
+}
+</script>
+
+<!--===================== Load Adsense =====================-->
+<script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2269884583846743" crossorigin="anonymous"></script>
+
+<!--===================== Feeds =====================-->
+<script src="https://www.marketing2advertising.com/feeds/posts/default/-/movies1000?alt=json-in-script&callback=renderMovieFeedRow"></script>
+<script src="https://www.marketing2advertising.com/feeds/posts/default/-/info?alt=json-in-script&callback=renderMovieFeedRow"></script>
+<script src="https://www.marketing2advertising.com/feeds/posts/default/-/Courses?alt=json-in-script&callback=renderMovieFeedRow"></script>
+<script src="https://www.marketing2advertising.com/feeds/posts/default/-/finance?alt=json-in-script&callback=renderMovieFeedRow"></script>
+<script src="https://www.marketing2advertising.com/feeds/posts/default/-/moneypower?alt=json-in-script&callback=renderMovieFeedRow"></script>
+<script src="https://www.marketing2advertising.com/feeds/posts/default/-/storytelling?alt=json-in-script&callback=renderMovieFeedRow"></script>
+<script src="https://www.marketing2advertising.com/feeds/posts/default/-/movies1006?alt=json-in-script&callback=renderMovieFeedRow"></script>
+<script src="https://www.marketing2advertising.com/feeds/posts/default/-/movies1007?alt=json-in-script&callback=renderMovieFeedRow"></script>
+<script src="https://www.marketing2advertising.com/feeds/posts/default/-/movies1008?alt=json-in-script&callback=renderMovieFeedRow"></script>
+<script src="https://www.marketing2advertising.com/feeds/posts/default/-/movies1009?alt=json-in-script&callback=renderMovieFeedRow"></script></b:if>
+</body>
+</html>
