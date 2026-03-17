@@ -1,0 +1,76 @@
+   
+                              <div id="custom-video-comments">
+  <h3>Loading....</h3>
+  
+  <input type="text" id="video-url" placeholder="Wait Your Request Is Loading" style="width:70%;padding:6px;margin-right:5px;" />
+  <button type="button" id="submit-video" style="padding:6px 12px;">Re-Submit</button>
+  
+  <div id="video-comment-list" style="margin-top:20px;"></div>
+</div>
+
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+
+  var input = document.getElementById("video-url");
+  var button = document.getElementById("submit-video");
+  var container = document.getElementById("video-comment-list");
+
+  function renderURL(url){
+
+    if(!url) return;
+
+    url = url.replace(/&/g,"&amp;");
+
+    var element = document.createElement("div");
+    element.style.margin = "15px 0";
+
+    if(url.match(/\.mp4(\?raw=1)?$/i)){
+      element.innerHTML =
+      '<video controls="controls" style="width:100%;max-width:1100px;border-radius:8px;">' +
+      '<source src="'+url+'" type="video/mp4" />' +
+      'Your browser does not support HTML5 video.' +
+      '</video>';
+    }
+    else{
+      element.innerHTML =
+      '<iframe src="'+url+'" allowfullscreen="allowfullscreen" style="width:100%;height:900px;border:0;border-radius:8px;"></iframe>';
+    }
+
+    container.appendChild(element);
+  }
+
+
+  /* Manual submit */
+  button.addEventListener("click", function(){
+    var url = input.value.trim();
+    if(!url) return alert("Please enter a URL");
+
+    renderURL(url);
+
+    input.value="";
+    input.focus();
+  });
+
+
+
+  /* AUTO DETECT TAGS */
+
+  var html = document.body.innerHTML;
+
+  var matches = html.match(/\[\/ddr45\/\](.*?)\[\/ddr45\/\]/gi);
+
+  if(matches){
+
+    matches.forEach(function(tag){
+
+      var url = tag.replace(/\[\/ddr45\/\]/gi,"").trim();
+
+      renderURL(url);
+
+    });
+
+  }
+
+});
+</script>
+  
