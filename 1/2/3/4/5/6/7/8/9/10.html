@@ -57,63 +57,7 @@
       }
  </style>
 
-<!--===================== MOVIE DISCO SEARCH =====================-->
-<style>
-@keyframes discoGlow {
-  0% { box-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; }
-  25% { box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff; }
-  50% { box-shadow: 0 0 10px #00ff00, 0 0 25px #00ff00; }
-  75% { box-shadow: 0 0 10px #ffff00, 0 0 25px #ffff00; }
-  100% { box-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; }
-}
 
-.movie-search {
-  max-width: 520px;
-  margin: 20px auto;
-  text-align: center;
-}
-
-.movie-search input {
-  width: 100%;
-  padding: 16px;
-  font-size: 18px;
-  color: #fff;
-  background: #000;
-  border: 2px solid #ff00ff;
-  border-radius: 50px;
-  outline: none;
-  animation: discoGlow 3s infinite;
-}
-
-.movie-search input::placeholder {
-  color: #ccc;
-  text-align: center;
-}
-
-.movie-search button {
-  margin-top: 12px;
-  padding: 12px 30px;
-  font-size: 16px;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
-  background: linear-gradient(45deg, #ff00ff, #00ffff, #00ff00);
-  color: #000;
-  font-weight: bold;
-  animation: discoGlow 2s infinite;
-  transition: transform 0.2s;
-}
-
-.movie-search button:hover {
-  transform: scale(1.1);
-}
-</style>
-
-<form action='/search' class='movie-search' method='get'>
-  <input name='q' placeholder='🎬 Search blogs, movies, series, actors...' required='' type='text'/>
-  <button type='submit'>SEARCH 🎥</button>
-</form>
-<!--===================== END MOVIE SEARCH =====================-->
 
      <body>
 
